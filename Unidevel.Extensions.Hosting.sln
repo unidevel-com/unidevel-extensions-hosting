@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unidevel.Extensions.Hosting", "src\Unidevel.Extensions.Hosting\Unidevel.Extensions.Hosting.csproj", "{EEEC81E1-F2EC-42C8-8EF8-D2121BB3B4C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Formal documents", "Formal documents", "{A17B5948-7127-431F-B61D-EEBA82E280B0}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEEC81E1-F2EC-42C8-8EF8-D2121BB3B4C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEEC81E1-F2EC-42C8-8EF8-D2121BB3B4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEEC81E1-F2EC-42C8-8EF8-D2121BB3B4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEEC81E1-F2EC-42C8-8EF8-D2121BB3B4C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C11D9645-6BC7-451D-A3C5-D6EB6BDCBD05}
+	EndGlobalSection
+EndGlobal
