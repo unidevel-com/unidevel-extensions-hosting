@@ -36,8 +36,7 @@ Look at code example should be enough.
 
 ## Tests
 
-Tests are included in this release. However, you must provide apiKey in Const.cs file (you can
-obtain one free from Open Weather website).
+Not included in this release (but be patient, I'll migrate it later)
 
 ## Contributors
 
