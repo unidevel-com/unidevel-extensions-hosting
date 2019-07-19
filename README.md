@@ -5,7 +5,7 @@ dependend configuration.
 
 ## Code Example
 
-### Hosting SafeBackgroundService (and other IH)
+### Hosting SafeBackgroundService (and other IHostServices)
 
 ```csharp
 class Program : ProgramBase<HostedServiceLikeSafeBackgroundService>
@@ -15,7 +15,7 @@ class Program : ProgramBase<HostedServiceLikeSafeBackgroundService>
         services
             .AddSingleton<ISomeService, SomeServiceImpl>();
 
-		// do not add HostedService to services, it has already been added
+        // do not add HostedService to services, it has already been added
     }
 
     public static void Main(string[] args)
@@ -23,6 +23,7 @@ class Program : ProgramBase<HostedServiceLikeSafeBackgroundService>
         new Program().run();
     }
 }
+```
 
 ### Implementing SafeBackgroundService
 
