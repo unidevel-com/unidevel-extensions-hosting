@@ -1,20 +1,41 @@
 ## Synopsis
 
-Extends Microsoft's BackgroundService to create fail-slow service which tries to handle failures
-internally, perform limited number of restarts, waits for recovery etc.
+Provides full-flavour implementation of error-prune background service with Serilog logging and environment
+dependend configuration.
 
 ## Code Example
+
+### Hosting SafeBackgroundService (and other IH)
+
+```csharp
+class Program : ProgramBase<HostedServiceLikeSafeBackgroundService>
+{
+    protected override void ConfigureServices(HostBuilderContext hostContext, IServiceCollection services)
+    {
+        services
+            .AddSingleton<ISomeService, SomeServiceImpl>();
+
+		// do not add HostedService to services, it has already been added
+    }
+
+    public static void Main(string[] args)
+    {
+        new Program().run();
+    }
+}
+
+### Implementing SafeBackgroundService
 
 To use this class you should override at least one of first three methods below. 
 
 ```csharp
-        protected abstract Task ConnectAsync(CancellationToken cancellationToken);
+    protected abstract Task ConnectAsync(CancellationToken cancellationToken);
 
-        protected abstract Task DisconnectAsync();
+    protected abstract Task DisconnectAsync();
 
-        protected abstract Task ExecuteIterationAsync(CancellationToken cancellationToken);
+    protected abstract Task ExecuteIterationAsync(CancellationToken cancellationToken);
 
-        protected virtual void Panic(Exception reasonException) { }
+    protected virtual void Panic(Exception reasonException) { }
 ```
 
 ## Motivation
