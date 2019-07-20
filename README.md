@@ -1,7 +1,7 @@
 ## Synopsis
 
-Provides full-flavour implementation of error-prune background service with Serilog logging and environment
-dependend configuration.
+Provides full-flavour implementation of reliable background service with
+Serilog logging and environment dependent configuration.
 
 ## Code Example
 
