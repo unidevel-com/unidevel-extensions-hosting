@@ -1,7 +1,6 @@
 ## Synopsis
 
-Provides full-flavour implementation of reliable background service with
-Serilog logging and environment dependent configuration.
+Provides full-flavour implementation of reliable background service with Serilog logging and environment dependent configuration.
 
 ## Code Example
 
