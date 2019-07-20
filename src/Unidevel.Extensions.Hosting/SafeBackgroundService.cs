@@ -12,15 +12,15 @@ namespace Unidevel.Extensions.Hosting
         public bool IsAlive { get; private set; }
         public SafeBackgroundServiceErrorHandlingOptions Options { get; } = new SafeBackgroundServiceErrorHandlingOptions();
 
-        public SafeBackgroundService(ILogger<SafeBackgroundService> logger = null)
+        public SafeBackgroundService(ISafeBackgroundServicePanicHandler safeBackgroundServicePanicHandler, ILogger<SafeBackgroundService> logger = null)
         {
+            _safeBackgroundServicePanicHandler = safeBackgroundServicePanicHandler ?? throw new ArgumentNullException(nameof(safeBackgroundServicePanicHandler));
             _logger = logger;
         }
 
         protected abstract Task DisconnectAsync();
         protected abstract Task ExecuteIterationAsync(CancellationToken cancellationToken);
         protected abstract Task ConnectAsync(CancellationToken cancellationToken);
-        protected virtual void Panic(Exception reasonException) { }
 
         public sealed override Task StartAsync(CancellationToken startCancelledToken)
         {
@@ -150,7 +150,7 @@ namespace Unidevel.Extensions.Hosting
             catch (Exception ex)
             {
                 _logger?.LogError(ex, "Loop failed.");
-                Panic(ex);
+                _safeBackgroundServicePanicHandler?.HandlePanic(ex);
             }
             finally
             {
@@ -159,6 +159,7 @@ namespace Unidevel.Extensions.Hosting
         }
 
         private readonly ILogger<SafeBackgroundService> _logger;
+        private readonly ISafeBackgroundServicePanicHandler _safeBackgroundServicePanicHandler;
         private readonly object stateChangeLock = new object();
         private List<Tuple<DateTime, Exception>> nonObsoleteErrors = new List<Tuple<DateTime, Exception>>();
         private List<Tuple<DateTime, Exception>> nonObsoleteFailures = new List<Tuple<DateTime, Exception>>();

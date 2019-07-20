@@ -8,7 +8,7 @@ dependend configuration.
 ### Hosting SafeBackgroundService (and other IHostServices)
 
 ```csharp
-class Program : ProgramBase<HostedServiceLikeSafeBackgroundService>
+class SafeProgram : SafeProgramBase<HostedServiceLikeSafeBackgroundService>
 {
     protected override void ConfigureServices(HostBuilderContext hostContext, IServiceCollection services)
     {
@@ -27,7 +27,7 @@ class Program : ProgramBase<HostedServiceLikeSafeBackgroundService>
 
 ### Implementing SafeBackgroundService
 
-To use this class you should override at least one of first three methods below. 
+To use this class you should override at least one of following methods: 
 
 ```csharp
     protected abstract Task ConnectAsync(CancellationToken cancellationToken);
@@ -35,9 +35,11 @@ To use this class you should override at least one of first three methods below.
     protected abstract Task DisconnectAsync();
 
     protected abstract Task ExecuteIterationAsync(CancellationToken cancellationToken);
-
-    protected virtual void Panic(Exception reasonException) { }
 ```
+
+You also need to provide ISafeBackgroundServicePanicHandler to the constructor if you don't use
+SafeProgramBase. If you do use SafeProgramBase, it will be automatically provided and will stop 
+all services when one of them raised panic event.
 
 ## Motivation
 
