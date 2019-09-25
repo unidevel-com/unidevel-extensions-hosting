@@ -19,7 +19,7 @@ class SafeProgram : SafeProgramBase<HostedServiceLikeSafeBackgroundService>
 
     public static void Main(string[] args)
     {
-        new Program().run();
+        new SafeProgram().run();
     }
 }
 ```
